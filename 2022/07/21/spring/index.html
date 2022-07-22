@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Spring框架主要内容 IOC(控制反转),创建对象,管理对象,管理依赖关系 AOP(面向切面编程),对传统面向对象编程的补充 Templete,数据库模板类;数据库访问(JDBCTemplete) 事务管理: 基于注解的事务管理模式(声明式事务管理模式);基于xml配置文件的事务管理模式   Spring框架 简介概念 javaEE应用一站式轻量级开源框架 核心是 IOC(控制反转&#x2F;依赖注入)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring">
+<meta property="og:url" content="http://example.com/2022/07/21/spring/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring框架主要内容 IOC(控制反转),创建对象,管理对象,管理依赖关系 AOP(面向切面编程),对传统面向对象编程的补充 Templete,数据库模板类;数据库访问(JDBCTemplete) 事务管理: 基于注解的事务管理模式(声明式事务管理模式);基于xml配置文件的事务管理模式   Spring框架 简介概念 javaEE应用一站式轻量级开源框架 核心是 IOC(控制反转&#x2F;依赖注入)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/spring/new/1.1.png">
+<meta property="og:image" content="http://example.com/img/spring/new/1.1.2.png">
+<meta property="og:image" content="http://example.com/img/spring/new/1.1.3.png">
+<meta property="og:image" content="http://example.com/img/spring/new/1.1.4.png">
+<meta property="og:image" content="http://example.com/img/spring/new/1.1.5.png">
+<meta property="og:image" content="http://example.com/img/spring/new/1.1.6.png">
+<meta property="article:published_time" content="2022-07-21T14:16:27.000Z">
+<meta property="article:modified_time" content="2022-07-21T17:35:58.864Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/spring/new/1.1.png">
+  
+  
+  
+  <title>spring - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="spring"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-21 22:16" pubdate>
+          2022年7月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          23k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          196 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">spring</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h1><h3 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h3><p class="note note-primary">
+IOC(控制反转),创建对象,管理对象,管理依赖关系</br>
+AOP(面向切面编程),对传统面向对象编程的补充</br>
+Templete,数据库模板类;数据库访问(JDBCTemplete)</br>
+事务管理: 基于注解的事务管理模式(声明式事务管理模式);基于xml配置文件的事务管理模式</br>
+</p>
+
+<h2 id="Spring框架-简介"><a href="#Spring框架-简介" class="headerlink" title="Spring框架 简介"></a>Spring框架 简介</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p class="note note-primary">
+javaEE应用一站式轻量级开源框架</br>
+核心是 IOC(控制反转/依赖注入) + AOP(面向切面)  两大技术 => 轻松解耦,提高开发效率</br>
+
+</p>
+
+<p><img src="/img/spring/new/1.1.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">Spring IOC流程<br>   <span class="hljs-number"> 1 </span>pom.xml 引入依赖<br>   <span class="hljs-number"> 2 </span>创建 java类<br>   <span class="hljs-number"> 3 </span>创建 src/resource/spring.xml(spring的配置文件) 编写Bean对象 <br>   <span class="hljs-number"> 4 </span>测试类: 加载配置文件,获取实例化对象<br></code></pre></td></tr></table></figure>
+
+<h2 id="Spring-IOC-配置文件-加载"><a href="#Spring-IOC-配置文件-加载" class="headerlink" title="Spring IOC 配置文件 加载"></a>Spring IOC 配置文件 加载</h2><h4 id="加载单个配置文件"><a href="#加载单个配置文件" class="headerlink" title="加载单个配置文件"></a>加载单个配置文件</h4><p><img src="/img/spring/new/1.1.2.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="加载多个配置文件1"><a href="#加载多个配置文件1" class="headerlink" title="加载多个配置文件1"></a>加载多个配置文件1</h4><ul>
+<li>1 实例化ClassPathXmlApplicationContext对象时,指定多个文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;dao.xml&quot;</span>,<span class="hljs-string">&quot;service.xml&quot;</span>,<span class="hljs-string">&quot;pojo.xml&quot;</span>,<span class="hljs-string">&quot;vo.xml&quot;</span>);<br><span class="hljs-type">UserService</span> <span class="hljs-variable">userService</span> <span class="hljs-operator">=</span> (UserService)context.getBean(<span class="hljs-string">&quot;userService&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="加载多个配置文件2"><a href="#加载多个配置文件2" class="headerlink" title="加载多个配置文件2"></a>加载多个配置文件2</h4><ul>
+<li>2 加载汇总的配置文件 spring.xml (通过引入需要的配置文件)<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span><br>    <br>    <span class="hljs-comment">&lt;!--导入需要包含的资源文件--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;service.xml&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;dao.xml&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Spring-IOC-容器-Bean对象实例化"><a href="#Spring-IOC-容器-Bean对象实例化" class="headerlink" title="Spring IOC 容器 Bean对象实例化"></a>Spring IOC 容器 Bean对象实例化</h2><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">构造器实例化 <span class="hljs-operator">=</span><span class="hljs-operator">=</span> 静态工厂实例化 <span class="hljs-operator">=</span><span class="hljs-operator">=</span> 实例化工厂实例化<br></code></pre></td></tr></table></figure>
+<p><img src="/img/spring/new/1.1.3.png" srcset="/img/loading.gif" lazyload><br><img src="/img/spring/new/1.1.4.png" srcset="/img/loading.gif" lazyload><br><img src="/img/spring/new/1.1.5.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Spring 三种实例化Bean的方法比较<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dart">构造方法<br>    通过bean的缺省构造函数创建;<br>静态<span class="hljs-keyword">factory</span><br>    可以统一管理各个bean的创建,如各个bean在创建之前需要相同的初始化处理,则可用这个<span class="hljs-keyword">factory</span>方法进行统一处理<br>实例化<span class="hljs-keyword">factory</span><br>    <span class="hljs-number">1</span> 继承了其他框架bean的创建方法 <span class="hljs-number">2</span> bean和<span class="hljs-keyword">factory</span>的角色互换<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Spring-IOC-注入"><a href="#Spring-IOC-注入" class="headerlink" title="Spring IOC 注入"></a>Spring IOC 注入</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>application.xml 开启自动化装配的注释扫描<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">       https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--开启自动化装配（注入）--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:annotation-config</span>/&gt;</span><br><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Resource注入"><a href="#Resource注入" class="headerlink" title="@Resource注入"></a>@Resource注入</h3><p>@Resource注解 实现自动注入(反射)</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xquery">默认 根据属性字段名称 查找对应 bean对象<br>如果属性字段名称为找到 通过 类型查找<br>可以设<span class="hljs-built_in">置name</span>属性<span class="hljs-built_in"> name</span>与标<span class="hljs-built_in">签id</span>对应<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br><br>    <span class="hljs-meta">@Resource(name = &quot;userDao01&quot;)</span> <span class="hljs-comment">// name属性值与其中一个实现类的bean标签的id属性值一致</span><br>    <span class="hljs-keyword">private</span> IUserDao iUserDao; <span class="hljs-comment">// 注入接口（接口存在多个实现）</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;<br>        iUserDao.test();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Autowired注解"><a href="#Autowired注解" class="headerlink" title="@Autowired注解"></a>@Autowired注解</h3><p>@Autowired注解实现自动注入</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dart">默认通过类型 查找bean对象 与属性字段名称无关<br>可以添加<span class="hljs-meta">@Qualifier</span>结合使用,通过value属性值查找bean对象<br>可以声明在<span class="hljs-keyword">set</span>方法上<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Autowired</span>注解实现自动化注入</span><br><span class="hljs-comment"> *  可以添加<span class="hljs-doctag">@Qualifier</span>结合使用，通过value属性值查找bean对象</span><br><span class="hljs-comment"> 		value属性值必须要设置，且值要与bean标签的id属性值对应</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-meta">@Qualifier(value=&quot;userDao&quot;)</span> <span class="hljs-comment">// value属性值必须要设置，且值要与bean标签的id属性值对应</span><br>    <span class="hljs-keyword">private</span> UserDao userDao;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;<br>        userDao.test();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Spring-IOC-扫描器"><a href="#Spring-IOC-扫描器" class="headerlink" title="Spring IOC 扫描器"></a>Spring IOC 扫描器</h2><h3 id="Spring-IOC-扫描器的配置"><a href="#Spring-IOC-扫描器的配置" class="headerlink" title="Spring IOC 扫描器的配置"></a>Spring IOC 扫描器的配置</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">Spring</span> IOC 扫描器<br>    作用: bean对象统一进行管理,简化开发配置,提高开发效率<br><br><span class="hljs-number">1</span> 设置自动化扫描的范围<br>    如果bean对象未在指定包范围,即使声明了注释,也无法实例化<br><span class="hljs-number">2</span> 使用指定的注释<br>    Dao层           ==      <span class="hljs-variable">@Repository</span><br>    Service         ==      <span class="hljs-variable">@Service</span><br>    Controller      ==      <span class="hljs-variable">@Controller</span><br>    任意类          ==      <span class="hljs-variable">@Component</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>准备工作 application.xml开启自动化扫描范围<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">       https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 设置自动化扫描的范围 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;com.xxxx&quot;</span>/&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h1><h2 id="Spring-AOP-简介"><a href="#Spring-AOP-简介" class="headerlink" title="Spring AOP 简介"></a>Spring AOP 简介</h2><h3 id="AOP是什么"><a href="#AOP是什么" class="headerlink" title="AOP是什么"></a>AOP是什么</h3><p>面向切面编程(Aspect Oriented Programing),相比较oop面向对象编程来说,更多的是一种面到面得切入,即层与层之间的一种切入,所以称之为切面。</p>
+<h3 id="AOP能做什么"><a href="#AOP能做什么" class="headerlink" title="AOP能做什么"></a>AOP能做什么</h3><p>AOP主要应用于日志记录,性能统计,安全控制,事务处理等方面,实现公共功能性的重复使用</p>
+<h3 id="AOP特点"><a href="#AOP特点" class="headerlink" title="AOP特点"></a>AOP特点</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span>降低 模块与模块之间的耦合度,提高业务代码的聚合度(高内聚低耦合)<br><span class="hljs-symbol">2 </span>提高了代码的复用性<br><span class="hljs-symbol">3 </span>提高系统的扩展性<br><span class="hljs-symbol">4 </span>可以在不影响原有功能基础上添加新的功能<br></code></pre></td></tr></table></figure>
+
+<h3 id="AOP的底层实现"><a href="#AOP的底层实现" class="headerlink" title="AOP的底层实现"></a>AOP的底层实现</h3><p>动态代理(JDK + CGLIB) 了解</p>
+<h3 id="AOP基本概念"><a href="#AOP基本概念" class="headerlink" title="AOP基本概念"></a>AOP基本概念</h3><h4 id="横切关注点"><a href="#横切关注点" class="headerlink" title="横切关注点"></a>横切关注点</h4><p>散落在业务层里面的一些功能代码</p>
+<h4 id="Aspect-切面"><a href="#Aspect-切面" class="headerlink" title="Aspect(切面)"></a>Aspect(切面)</h4><p>把所有横切关注点抽象出来,封装成Java类,再把Java类变为切面类</p>
+<h4 id="Advice-通知"><a href="#Advice-通知" class="headerlink" title="Advice(通知)"></a>Advice(通知)</h4><p>通知: 切面类里面实现具体业务的方法(如: 开启事务 回滚事务 提交事务)</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">Aspect</span> 支持<span class="hljs-number">5</span>种类型的通知注解<br><span class="hljs-variable">@Before</span>         前置通知,再方法执行之前执行<br><span class="hljs-variable">@After</span>          后置通知,在方法执行之后执行<br><span class="hljs-variable">@AfterRunning</span>   返回通知,在方法返回结果之后执行<br><span class="hljs-variable">@AfterThrowing</span>  异常通知,在方法抛出异常之后<br><span class="hljs-variable">@Around</span>         环绕通知,围绕着方法执行<br></code></pre></td></tr></table></figure>
+
+<h4 id="Target-目标对象"><a href="#Target-目标对象" class="headerlink" title="Target(目标对象)"></a>Target(目标对象)</h4><p>拥有当前业务功能实现的类</p>
+<h4 id="代理对象"><a href="#代理对象" class="headerlink" title="代理对象"></a>代理对象</h4><p>IOC容器自动将切面类生成所对应的代理对象</p>
+<h4 id="Joinpoint-连接点"><a href="#Joinpoint-连接点" class="headerlink" title="Joinpoint(连接点)"></a>Joinpoint(连接点)</h4><p>程序执行的某个特定位置,封装方法操作的细节(获取:方法参数,方法名等)</p>
+<h4 id="Pointcut-切入点"><a href="#Pointcut-切入点" class="headerlink" title="Pointcut(切入点)"></a>Pointcut(切入点)</h4><p>切点表达式: 指明当前通知作用到具体某个业务方法上</p>
+<h1 id="Spring-AOP的实现"><a href="#Spring-AOP的实现" class="headerlink" title="Spring AOP的实现"></a>Spring AOP的实现</h1><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">pom.xml <span class="hljs-operator">=</span><span class="hljs-operator">=</span> application.xml开启AOP代理配置 <span class="hljs-operator">=</span><span class="hljs-operator">=</span> 实现Aspect类<br></code></pre></td></tr></table></figure>
+
+<h2 id="AOP-注解实现"><a href="#AOP-注解实现" class="headerlink" title="AOP 注解实现"></a>AOP 注解实现</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.aspectj<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>aspectjweaver<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.8.9<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="配置文件-application-xml"><a href="#配置文件-application-xml" class="headerlink" title="配置文件(application.xml)"></a>配置文件(application.xml)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 设置自动化扫描的范围 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;com.xxxx&quot;</span> /&gt;</span><br><br><span class="hljs-comment">&lt;!--配置AOP代理:开启Spring AOP--&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">aop:aspectj-autoproxy</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="切面类"><a href="#切面类" class="headerlink" title="切面类"></a>切面类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**日志切面类:IOC容器自动生成代理对象 </span><br><span class="hljs-comment"> * 如何把一个普通的类转换成切面</span><br><span class="hljs-comment"> *   1.交给Spring IOC容器管理  <span class="hljs-doctag">@Component</span></span><br><span class="hljs-comment"> *   2.声明为一个切面                         <span class="hljs-doctag">@Aspect</span></span><br><span class="hljs-comment"> * */</span><br><span class="hljs-meta">@Order(1)</span><span class="hljs-comment">//指定切面的优先级,数字越小优先级越高</span><br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component(&quot;mathAspectLog&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MathAspectLog</span> &#123;<br>	<span class="hljs-comment">/**前置通知: 在方法执行之前执行,记录目标方法的执行开始位置</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-meta">@Before(&quot;execution(* com.xxxx.service.MathUtilImpl.add(int,int))&quot;)</span><span class="hljs-comment">//切点表达式</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">before</span><span class="hljs-params">(JoinPoint joinPoint)</span>&#123;<br>		<span class="hljs-comment">//通过连接点获取方法参数</span><br>		Object[] args=joinPoint.getArgs();<br>		<span class="hljs-comment">//通过连接点先获取方法签名,在获取方法名</span><br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;前置通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; begin with &quot;</span>+Arrays.asList(args));<br>	&#125;<br>	<br>	<span class="hljs-comment">/**后置通知: 在方法执行之后执行,记录目标方法的执行结束位置</span><br><span class="hljs-comment">	 *  1.后置通知得不到方法返回值  2.不管方法是否发生异常度执行</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-meta">@After(&quot;execution(* com.xxxx.service.MathUtilImpl.add(int,int))&quot;)</span><span class="hljs-comment">//切点表达式</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">after</span><span class="hljs-params">(JoinPoint joinPoint)</span>&#123;<br>		<span class="hljs-comment">//通过连接点获取方法参数</span><br>		Object[] args=joinPoint.getArgs();<br>		<span class="hljs-comment">//通过连接点先获取方法签名,在获取方法名</span><br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;后置通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; end with &quot;</span>+Arrays.asList(args));<br>	&#125;<br>	<br>	<span class="hljs-comment">/**返回通知:在目标方法执行之后执行,可以访问目标方法的执行结果</span><br><span class="hljs-comment">	 *    (异常之后不执行)</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-meta">@AfterReturning(value=&quot;execution(* com.xxxx.service.MathUtilImpl.add(int,int))&quot;,returning=&quot;result&quot;)</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterRun</span><span class="hljs-params">(JoinPoint joinPoint,Object result)</span>&#123;<br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;返回通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; return result:  &quot;</span>+result);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**异常通知:在目标方法发生异常时候执行,可以访问到异常对象</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-meta">@AfterThrowing(value=&quot;execution(* com.xxxx.service.MathUtilImpl.add(int,int))&quot;,throwing=&quot;e&quot;)</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterThrowing</span><span class="hljs-params">(JoinPoint joinPoint,Throwable e)</span>&#123;<br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;异常通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; throwing 异常:  &quot;</span>+e);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**环绕通知:需要携带ProceedingJoinPoint类型的参数,可以决定是否执行目标方法</span><br><span class="hljs-comment">	 *   1.环绕通知类似动态代理全过程</span><br><span class="hljs-comment">	 *   2.环绕通知必须有返回值,返回值即为目标方法的返回值</span><br><span class="hljs-comment">	  */</span><br>	<span class="hljs-meta">@Around(&quot;execution(* com.xxxx.service.MathUtilImpl.add(int,int))&quot;)</span><br>	<span class="hljs-keyword">public</span> Object <span class="hljs-title function_">Around</span><span class="hljs-params">(ProceedingJoinPoint pjd)</span>&#123;<br>		Object[] args=pjd.getArgs();<br>		String methodName=pjd.getSignature().getName();<br>		Object result=<span class="hljs-literal">null</span>;<br>		<span class="hljs-keyword">try</span> &#123;<br>			<span class="hljs-comment">//前置通知</span><br>			System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; begin with &quot;</span>+Arrays.asList(args));<br>			result=pjd.proceed();<span class="hljs-comment">//执行目标方法</span><br>			<span class="hljs-comment">//后置通知 </span><br>			System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; end with &quot;</span>+Arrays.asList(args));<br>		&#125; <span class="hljs-keyword">catch</span> (Throwable e) &#123;<br>			e.printStackTrace();<br>			<span class="hljs-comment">//异常通知</span><br>			System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; throwing 异常:  &quot;</span>+e);<br>		&#125;<br>		<span class="hljs-comment">//返回通知</span><br>		System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; return result:  &quot;</span>+result);<br>		<span class="hljs-keyword">return</span> result;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>定义连接点<br><img src="/img/spring/new/1.1.6.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="AOP-xml配置实现"><a href="#AOP-xml配置实现" class="headerlink" title="AOP xml配置实现"></a>AOP xml配置实现</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span>定义切面类 <br><span class="hljs-symbol">2 </span>配置文件(application.xmls)<br></code></pre></td></tr></table></figure>
+
+<h3 id="定义切面类"><a href="#定义切面类" class="headerlink" title="定义切面类"></a>定义切面类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**日志切面类:IOC容器自动生成代理对象 </span><br><span class="hljs-comment"> * 如何把一个普通的类转换成切面</span><br><span class="hljs-comment"> *   1.交给Spring IOC容器管理  <span class="hljs-doctag">@Component</span></span><br><span class="hljs-comment"> *   2.声明为一个切面                         <span class="hljs-doctag">@Aspect</span></span><br><span class="hljs-comment"> * */</span><br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component(&quot;mathAspectLogXml&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MathAspectLogXml</span> &#123;<br>	<span class="hljs-comment">/**前置通知: 在方法执行之前执行,记录目标方法的执行开始位置</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">before</span><span class="hljs-params">(JoinPoint joinPoint)</span>&#123;<br>		<span class="hljs-comment">//通过连接点获取方法参数</span><br>		Object[] args=joinPoint.getArgs();<br>		<span class="hljs-comment">//通过连接点先获取方法签名,在获取方法名</span><br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;前置通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; begin with &quot;</span>+Arrays.asList(args));<br>	&#125;<br>	<br>	<span class="hljs-comment">/**后置通知: 在方法执行之后执行,记录目标方法的执行结束位置</span><br><span class="hljs-comment">	 *  1.后置通知得不到方法返回值  2.不管方法是否发生异常度执行</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">after</span><span class="hljs-params">(JoinPoint joinPoint)</span>&#123;<br>		<span class="hljs-comment">//通过连接点获取方法参数</span><br>		Object[] args=joinPoint.getArgs();<br>		<span class="hljs-comment">//通过连接点先获取方法签名,在获取方法名</span><br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;后置通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; end with &quot;</span>+Arrays.asList(args));<br>	&#125;<br>	<br>	<span class="hljs-comment">/**返回通知:在目标方法执行之后执行,可以访问目标方法的执行结果</span><br><span class="hljs-comment">	 *    (异常之后不执行)</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterRun</span><span class="hljs-params">(JoinPoint joinPoint,Object result)</span>&#123;<br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;返回通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; return result:  &quot;</span>+result);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**异常通知:在目标方法发生异常时候执行,可以访问到异常对象</span><br><span class="hljs-comment">	 * JoinPoint:连接点,封装了很多方法操作的细节   比如:方法名和参数</span><br><span class="hljs-comment">	 * */</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterThrowing</span><span class="hljs-params">(JoinPoint joinPoint,Throwable e)</span>&#123;<br>		String methodName=joinPoint.getSignature().getName();<br>		System.out.println(<span class="hljs-string">&quot;异常通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; throwing 异常:  &quot;</span>+e);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**环绕通知:需要携带ProceedingJoinPoint类型的参数,可以决定是否执行目标方法</span><br><span class="hljs-comment">	 *   1.环绕通知类似动态代理全过程</span><br><span class="hljs-comment">	 *   2.环绕通知必须有返回值,返回值即为目标方法的返回值</span><br><span class="hljs-comment">	  */</span><br>	<span class="hljs-keyword">public</span> Object <span class="hljs-title function_">Around</span><span class="hljs-params">(ProceedingJoinPoint pjd)</span>&#123;<br>		Object[] args=pjd.getArgs();<br>		String methodName=pjd.getSignature().getName();<br>		Object result=<span class="hljs-literal">null</span>;<br>		<span class="hljs-keyword">try</span> &#123;<br>			<span class="hljs-comment">//前置通知</span><br>			System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; begin with &quot;</span>+Arrays.asList(args));<br>			result=pjd.proceed();<span class="hljs-comment">//执行目标方法</span><br>			<span class="hljs-comment">//后置通知 </span><br>			System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; end with &quot;</span>+Arrays.asList(args));<br>		&#125; <span class="hljs-keyword">catch</span> (Throwable e) &#123;<br>			e.printStackTrace();<br>			<span class="hljs-comment">//异常通知</span><br>			System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; throwing 异常:  &quot;</span>+e);<br>		&#125;<br>		<span class="hljs-comment">//返回通知</span><br>		System.out.println(<span class="hljs-string">&quot;环绕通知&gt;&gt;&gt;日志:The method &quot;</span>+methodName+<span class="hljs-string">&quot; return result:  &quot;</span>+result);<br>		<span class="hljs-keyword">return</span> result;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="application-xml"><a href="#application-xml" class="headerlink" title="application.xml"></a>application.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置AOP --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span><br>		<span class="hljs-comment">&lt;!-- 配置切点表达式 --&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span></span><br><span class="hljs-tag">			<span class="hljs-attr">expression</span>=<span class="hljs-string">&quot;execution(* com.xxxx.service.*.add(int,int))&quot;</span></span><br><span class="hljs-tag">			<span class="hljs-attr">id</span>=<span class="hljs-string">&quot;logPointcut&quot;</span> /&gt;</span><br><br>		<span class="hljs-comment">&lt;!-- 配置切面 --&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;mathAspectLogXml&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;2&quot;</span>&gt;</span><br>			<span class="hljs-comment">&lt;!-- 配置通知 --&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;before&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span> /&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">aop:after</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;after&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span> /&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-returning</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;afterRun&quot;</span></span><br><span class="hljs-tag">				<span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span> <span class="hljs-attr">returning</span>=<span class="hljs-string">&quot;result&quot;</span> /&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-throwing</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;afterThrowing&quot;</span></span><br><span class="hljs-tag">				<span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span> <span class="hljs-attr">throwing</span>=<span class="hljs-string">&quot;e&quot;</span> /&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="AOP配置模板"><a href="#AOP配置模板" class="headerlink" title="AOP配置模板"></a>AOP配置模板</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--aop相关配置--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span><br>   <span class="hljs-comment">&lt;!--aop切面--&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;mathAspectLog&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;2&quot;</span>&gt;</span><br>     <span class="hljs-comment">&lt;!-- 定义aop 切入点 --&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;logPointcut&quot;</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">&quot;execution(* com.xxxx.service.*.*(..))&quot;</span>/&gt;</span><br>     <span class="hljs-comment">&lt;!-- 配置前置通知 指定前置通知方法名  并引用切入点定义 --&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;before&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span>/&gt;</span><br>     <span class="hljs-comment">&lt;!-- 配置返回通知 指定返回通知方法名  并引用切入点定义 --&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">aop:after-returning</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;afterReturn&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span>/&gt;</span><br>     <span class="hljs-comment">&lt;!-- 配置异常通知  指定异常通知方法名  并引用切入点定义 --&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">aop:after-throwing</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;afterThrow&quot;</span> <span class="hljs-attr">throwing</span>=<span class="hljs-string">&quot;e&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span>/&gt;</span><br>     <span class="hljs-comment">&lt;!-- 配置最终通知  指定最终通知方法名  并引用切入点定义 --&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">aop:after</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;after&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span>/&gt;</span><br>     <span class="hljs-comment">&lt;!-- 配置环绕通知  指定环绕通知方法名  并引用切入点定义 --&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">aop:around</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;around&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;logPointcut&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//切点表达式 重用</span><br><span class="hljs-meta">@Pointcut(&quot;execution(* com.xxxx.service.*.*(int,int))&quot;)</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">LogCutPoint</span><span class="hljs-params">()</span>&#123;&#125;;    <br>      <br><span class="hljs-comment">//切点表达式 使用</span><br><span class="hljs-meta">@Before(&quot;LogCutPoint()&quot;)</span> <span class="hljs-comment">//切点表达式</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">before</span><span class="hljs-params">(JoinPoint joinPoint)</span>&#123; ....  &#125;   <br>      <br><span class="hljs-comment">//切面优先级,值越小,优先级越高.</span><br><span class="hljs-meta">@Order(1)</span>  <br></code></pre></td></tr></table></figure>
+
+<h1 id="Spring-整合JDBC-环境"><a href="#Spring-整合JDBC-环境" class="headerlink" title="Spring 整合JDBC 环境"></a>Spring 整合JDBC 环境</h1><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">pom.xml <span class="hljs-operator">=</span><span class="hljs-operator">=</span> jdbc.properties <span class="hljs-operator">=</span><span class="hljs-operator">=</span> application.xml <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <br></code></pre></td></tr></table></figure>
+
+<h3 id="pom-xml-1"><a href="#pom-xml-1" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 添加相关的依赖坐标 --&gt;</span><br><span class="hljs-comment">&lt;!-- spring 框架坐标依赖添加 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- spring 测试环境 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- aop --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.aspectj<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>aspectjweaver<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.9.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- spring jdbc --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- spring事物 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-tx<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- mysql 驱动包 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.19<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- c3p0 连接池 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.mchange<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>c3p0<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.9.5.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="添加jdbc配置文件"><a href="#添加jdbc配置文件" class="headerlink" title="添加jdbc配置文件"></a>添加jdbc配置文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"># 驱动名<br>jdbc.driver=com.mysql.cj.jdbc.Driver<br># 数据库连接<br>jdbc.url=jdbc:mysql://localhost:3306/(数据库名称)?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;useSSL=false<br># 数据库用户名称<br>jdbc.user=(数据库账号)<br># 数据库用户密码<br>jdbc.password=(数据库密码)<br></code></pre></td></tr></table></figure>
+
+<h3 id="application-xml-添加"><a href="#application-xml-添加" class="headerlink" title="application.xml 添加"></a>application.xml 添加</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 加载properties 配置文件，用来读取jdbc.properties文件中的数据 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">&quot;jdbc.properties&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>数据池+模板类配置<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">       https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- Spring扫描注解的配置 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;com.xxxx&quot;</span> /&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 加载properties 配置文件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">&quot;jdbc.properties&quot;</span> /&gt;</span><br>    <br><br>    <span class="hljs-comment">&lt;!-- 配置 c3p0 数据源 --&gt;</span><br>    <span class="hljs-comment">&lt;!-- 不同数据源 class 不同 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- property标签的value属性对应的是jdbc.properties中的值 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;driverClass&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.driver&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;jdbcUrl&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.url&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;user&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.user&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.password&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 配置JdbcTemplate实例，并注入一个dataSource数据源--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;jdbcTemplate&quot;</span>  <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.core.JdbcTemplate&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="JdbcTemplate的API"><a href="#JdbcTemplate的API" class="headerlink" title="JdbcTemplate的API"></a>JdbcTemplate的API</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">编程步骤:<br>   a).获取JdbcTemplate对象<br>   b).通过JdbcTemplate对象操作数据库<br>      <span class="hljs-keyword">update</span>:增删改<br>      query:查询    <br>   <br>    //处理 插入,删除,更新数据<br>    <span class="hljs-type">int</span>   <span class="hljs-keyword">update</span>(String <span class="hljs-keyword">sql</span>,<span class="hljs-keyword">Object</span>[])<br>    //批量处理 插入,删除,更新数据<br>    <span class="hljs-type">int</span>[] batchUpdate(String <span class="hljs-keyword">sql</span>,List&lt;<span class="hljs-keyword">Object</span>[]&gt;)<br>     <br>    //查询单行 数据<br>    //RowMapper:指定如何去映射结果集的行,常用的实现类<br>    //  <span class="hljs-built_in">new</span> BeanPropertyRowMapper&lt;<span class="hljs-keyword">User</span>&gt;(<span class="hljs-keyword">User</span>.<span class="hljs-keyword">class</span>)<br>    <span class="hljs-keyword">Object</span> queryForObject(<span class="hljs-keyword">sql</span>, rowMapper,<span class="hljs-number">1</span>):<br>    <br>    //查询多行 数据<br>    List&lt;<span class="hljs-keyword">Object</span>&gt; query(<span class="hljs-keyword">sql</span>, rowMapper,<span class="hljs-number">1</span>)<br><br>    //查询单值 数据  <span class="hljs-keyword">select</span> count(*) <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id&gt;?;<br>    queryForObject(<span class="hljs-keyword">sql</span>,Long.<span class="hljs-keyword">class</span>,<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="JDBC测试类"><a href="#JDBC测试类" class="headerlink" title="JDBC测试类"></a>JDBC测试类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * JdbcTemplate 数据库模板工具类  测试</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JdbcTemplateTest</span> &#123;<br><br>	<span class="hljs-keyword">private</span> JdbcTemplate jdbcTemplate;<br><br>	<span class="hljs-comment">/**在所有标注<span class="hljs-doctag">@Test</span>注解的方法   执行之前 先执行<span class="hljs-doctag">@Before</span>标注的方法 */</span><br>	<span class="hljs-meta">@Before</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">before</span><span class="hljs-params">()</span>&#123;<br>		<span class="hljs-comment">//获取IOC容器</span><br>		ClassPathXmlApplicationContext ac=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;spring.xml&quot;</span>);<br>		<span class="hljs-comment">//获取数据库模板类JdbcTemplate</span><br>		jdbcTemplate = (JdbcTemplate) ac.getBean(<span class="hljs-string">&quot;jdbcTemplate&quot;</span>);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**jdbc.update:插入数据*/</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">()</span>&#123;<br>		User user=<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;徐凤年&quot;</span>,<span class="hljs-string">&quot;1234&quot;</span>);<br>		String sql=<span class="hljs-string">&quot;insert into tb_user(username,pwd) values(?,?)&quot;</span>;<br>		Object[] args=&#123;user.getUsername(),user.getPwd()&#125;;<br>		<span class="hljs-comment">//通过jdbcTemplate插入数据</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">update</span> <span class="hljs-operator">=</span> jdbcTemplate.update(sql, args);<br>		<br>		System.out.println(<span class="hljs-string">&quot;影响数据库的条目数: &quot;</span>+update);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**jdbc.update:修改数据*/</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">update</span><span class="hljs-params">()</span>&#123;<br>		User user=<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;徐骁&quot;</span>,<span class="hljs-string">&quot;666666&quot;</span>);<br>		<br>		String sql=<span class="hljs-string">&quot;update tb_user set username=?,pwd=? where id=?&quot;</span>;<br>		Object[] args=&#123;user.getUsername(),user.getPwd(),<span class="hljs-number">21</span>&#125;;<br>		<span class="hljs-comment">//通过jdbcTemplate修改数据</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">update</span> <span class="hljs-operator">=</span> jdbcTemplate.update(sql, args);<br>		<br>		System.out.println(<span class="hljs-string">&quot;影响数据库的条目数: &quot;</span>+update);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**jdbc.update:删除数据*/</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">delete</span><span class="hljs-params">()</span>&#123;<br>		String sql=<span class="hljs-string">&quot;delete from tb_user where id=?&quot;</span>;<br>		Object[] args=&#123;<span class="hljs-number">21</span>&#125;;<br>		<span class="hljs-comment">//通过jdbcTemplate删除数据</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">update</span> <span class="hljs-operator">=</span> jdbcTemplate.update(sql, args);<br>		<br>		System.out.println(<span class="hljs-string">&quot;影响数据库的条目数: &quot;</span>+update);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**jdbc.batchUpdate:批量插入数据*/</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">saveBach</span><span class="hljs-params">()</span>&#123;<br>		String sql=<span class="hljs-string">&quot;insert into tb_user(username,pwd) values(?,?)&quot;</span>;<br>		List&lt;Object[]&gt; batchArgs=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Object[]&gt;();<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-string">&quot;AAA&quot;</span>,<span class="hljs-string">&quot;1111&quot;</span>&#125;);<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-string">&quot;BBB&quot;</span>,<span class="hljs-string">&quot;2222&quot;</span>&#125;);<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-string">&quot;CCC&quot;</span>,<span class="hljs-string">&quot;3333&quot;</span>&#125;);<br>		<span class="hljs-comment">//通过jdbcTemplate插入数据</span><br>		<span class="hljs-type">int</span>[] updates = jdbcTemplate.batchUpdate(sql,batchArgs);<br>		<br>		System.out.println(<span class="hljs-string">&quot;影响数据库的条目数: &quot;</span>+Arrays.toString(updates));<br>	&#125;<br>	<br>	<span class="hljs-comment">/**jdbc.batchUpdate:批量修改数据*/</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">updateBach</span><span class="hljs-params">()</span>&#123;<br>		String sql=<span class="hljs-string">&quot;update tb_user set username=?,pwd=? where id=?&quot;</span>;<br>		List&lt;Object[]&gt; batchArgs=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Object[]&gt;();<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-string">&quot;AAA666&quot;</span>,<span class="hljs-string">&quot;1111666&quot;</span>,<span class="hljs-number">22</span>&#125;);<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-string">&quot;BBB666&quot;</span>,<span class="hljs-string">&quot;2222666&quot;</span>,<span class="hljs-number">23</span>&#125;);<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-string">&quot;CCC666&quot;</span>,<span class="hljs-string">&quot;3333666&quot;</span>,<span class="hljs-number">24</span>&#125;);<br>		<span class="hljs-comment">//通过jdbcTemplate修改数据</span><br>		<span class="hljs-type">int</span>[] updates = jdbcTemplate.batchUpdate(sql,batchArgs);<br>		<br>		System.out.println(<span class="hljs-string">&quot;影响数据库的条目数: &quot;</span>+Arrays.toString(updates));<br>	&#125;<br>	<br>	<span class="hljs-comment">/**jdbc.batchUpdate:批量删除数据*/</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteBach</span><span class="hljs-params">()</span>&#123;<br>		String sql=<span class="hljs-string">&quot;delete from tb_user where id=?&quot;</span>;<br>		List&lt;Object[]&gt; batchArgs=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Object[]&gt;();<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-number">22</span>&#125;);<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-number">23</span>&#125;);<br>		batchArgs.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-number">24</span>&#125;);<br>		<span class="hljs-comment">//通过jdbcTemplate删除数据</span><br>		<span class="hljs-type">int</span>[] updates = jdbcTemplate.batchUpdate(sql, batchArgs);<br>		<br>		System.out.println(<span class="hljs-string">&quot;影响数据库的条目数: &quot;</span>+Arrays.toString(updates));<br>	&#125;<br>	<br>	<span class="hljs-comment">/** 查询单行 数据:jdbc.queryForObject</span><br><span class="hljs-comment">	 *    RowMapper:接口,不能直接创建对象,只能创建子类对象</span><br><span class="hljs-comment">	 *      作用:bean属性和数据库字段 进行 一一映射</span><br><span class="hljs-comment">	 *    使用子类:BeanPropertyRowMapper&lt;User&gt;(User.class)</span><br><span class="hljs-comment">	 *  */</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectOne</span><span class="hljs-params">()</span>&#123;<br>		String sql=<span class="hljs-string">&quot;select * from tb_user where id=?&quot;</span>;<br>		RowMapper&lt;User&gt; rowMapper=<span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanPropertyRowMapper</span>&lt;User&gt;(User.class);<br>		Object[] args=&#123;<span class="hljs-number">25</span>&#125;;<br>		<span class="hljs-comment">//通过jdbcTemplate查询数据</span><br>		<span class="hljs-type">User</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> jdbcTemplate.queryForObject(sql,rowMapper,args);<br>		<br>		System.out.println(<span class="hljs-string">&quot;查询结果是: &quot;</span>+obj);<br>	&#125;<br>	<br>	<span class="hljs-comment">/** 查询多行 数据:使用jdbc.query 而不用jdbc.queryForList</span><br><span class="hljs-comment">	 *    RowMapper:接口,不能直接创建对象,只能创建子类对象</span><br><span class="hljs-comment">	 *      作用:bean属性和数据库字段 进行 一一映射</span><br><span class="hljs-comment">	 *    使用子类:BeanPropertyRowMapper&lt;User&gt;(User.class)</span><br><span class="hljs-comment">	 *  */</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectMany</span><span class="hljs-params">()</span>&#123;<br>		String sql=<span class="hljs-string">&quot;select * from tb_user where id in (?,?)&quot;</span>;<br>		RowMapper&lt;User&gt; rowMapper=<span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanPropertyRowMapper</span>&lt;User&gt;(User.class);<br>		Object[] args=&#123;<span class="hljs-number">25</span>,<span class="hljs-number">26</span>&#125;;<br>		<span class="hljs-comment">//通过jdbcTemplate查询数据</span><br>		List&lt;User&gt; users = jdbcTemplate.query(sql,rowMapper,args);<br>		<br>		System.out.println(<span class="hljs-string">&quot;查询结果是: &quot;</span>+users);<br>	&#125;<br>	<br>	<span class="hljs-comment">/**查询单值 数据 :jdbc.queryForObject*/</span><br>	<span class="hljs-meta">@Test</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectOneValue</span><span class="hljs-params">()</span>&#123;<br>		String sql=<span class="hljs-string">&quot;select count(*) from tb_user where id&gt;=?&quot;</span>;<br>		Class&lt;?&gt; requiredType=Integer.class; <span class="hljs-comment">//指定返回结果的数据类型</span><br>		Object[] args=&#123;<span class="hljs-number">25</span>&#125;;<br>		<span class="hljs-comment">//通过jdbcTemplate查询数据</span><br>		<span class="hljs-type">Object</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> jdbcTemplate.queryForObject(sql,requiredType,args);<br>		<br>		System.out.println(<span class="hljs-string">&quot;查询结果是: &quot;</span>+sum);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Spring-事务控制"><a href="#Spring-事务控制" class="headerlink" title="Spring 事务控制"></a>Spring 事务控制</h1><h2 id="Spring-事务控制-简介"><a href="#Spring-事务控制-简介" class="headerlink" title="Spring 事务控制 简介"></a>Spring 事务控制 简介</h2><h3 id="事务四大特性-ACID"><a href="#事务四大特性-ACID" class="headerlink" title="事务四大特性(ACID)"></a>事务四大特性(ACID)</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs">原子性<br>    事务是一个原子操作<br>一致性<br>    事务在执行前后,数据库种数据要保持一直性状态<br>隔离性<br>    事务与事务之间的执行应当是相互隔离互不影响<br>持久性<br>    事务提交完毕后,数据库种的数据的改变是永久的<br></code></pre></td></tr></table></figure>
+
+<h3 id="Spring-事务核心接口"><a href="#Spring-事务核心接口" class="headerlink" title="Spring 事务核心接口"></a>Spring 事务核心接口</h3><p>Spring 事务管理器的接口是org.springframework.transaction.PlatformTransactionManager</p>
+<h4 id="JDBC事务"><a href="#JDBC事务" class="headerlink" title="JDBC事务"></a>JDBC事务</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;transactionManager&quot;</span></span><br><span class="hljs-tag"><span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Spring事务控制配置-xml"><a href="#Spring事务控制配置-xml" class="headerlink" title="Spring事务控制配置 xml"></a>Spring事务控制配置 xml</h3><p>jdbc 持久化事务,对于事务配置实现有两种方式: xml配置/注解配置</p>
+<ul>
+<li>application.xml<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:tx</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/tx&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/aop&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">       https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/context/spring-context.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/tx</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/tx/spring-tx.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">       http://www.springframework.org/schema/aop</span></span><br><span class="hljs-string"><span class="hljs-tag">	   http://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 开启AOP代理 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">aop:aspectj-autoproxy</span> /&gt;</span><br><br><span class="hljs-comment">&lt;!-- 事务管理器定义 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;txManager&quot;</span>  <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--数据源 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">tx:advice</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;txAdvice&quot;</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">&quot;txManager&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--对以add update delete query开头的所有方法进行事务处理--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tx:attributes</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--定义什么方法需要使用事务  name代表的是方法名（或方法匹配）--&gt;</span><br>        <span class="hljs-comment">&lt;!-- 匹配以 add 开头的所有方法均加入事务 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;add*&quot;</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">&quot;REQUIRED&quot;</span> /&gt;</span><br>        <span class="hljs-comment">&lt;!-- 匹配以 update 开头的所有方法均加入事务 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;update*&quot;</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">&quot;REQUIRED&quot;</span> /&gt;</span><br>        <span class="hljs-comment">&lt;!-- 匹配以 delete 开头的所有方法均加入事务 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;delete*&quot;</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">&quot;REQUIRED&quot;</span> /&gt;</span><br>        <span class="hljs-comment">&lt;!-- 匹配以 query 开头的所有方法均加入事务 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;query*&quot;</span> <span class="hljs-attr">read-only</span>=<span class="hljs-string">&quot;true&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tx:attributes</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">tx:advice</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- aop 切面定义 （切入点和通知） --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 设置切入点 设置需要被拦截的方法 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">&quot;execution(* com.xxxx.service..*.*(..) )&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;cut&quot;</span> /&gt;</span><br>    <span class="hljs-comment">&lt;!-- 设置通知 事务通知 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">aop:advisor</span> <span class="hljs-attr">advice-ref</span>=<span class="hljs-string">&quot;txAdvice&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;cut&quot;</span>/&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Spring-事务控制-注释配置"><a href="#Spring-事务控制-注释配置" class="headerlink" title="Spring 事务控制 注释配置"></a>Spring 事务控制 注释配置</h3><h4 id="配置事务管理器"><a href="#配置事务管理器" class="headerlink" title="配置事务管理器"></a>配置事务管理器</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- spring 注解式事务声明 --&gt;</span><br><span class="hljs-comment">&lt;!-- 事务管理器定义 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;txManager&quot;</span></span><br><span class="hljs-tag"><span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h4 id="配置注解支持"><a href="#配置注解支持" class="headerlink" title="配置注解支持"></a>配置注解支持</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">tx:annotation-driven</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">&quot;txManager&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="方法上加入事务注解-一般是service"><a href="#方法上加入事务注解-一般是service" class="headerlink" title="方法上加入事务注解(一般是service)"></a>方法上加入事务注解(一般是service)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional(propagation=Propagation.REQUIRED)</span> <span class="hljs-comment">// 声明式 事物管理</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">buy</span><span class="hljs-params">(String username, String isbn, <span class="hljs-type">int</span> qty)</span> &#123;<br>    <span class="hljs-comment">//省略业务代码</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>spring</div>
+      <div>http://example.com/2022/07/21/spring/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月21日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/22/mybatis/" title="mybatis">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mybatis</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/03/Java/" title="Java">
+                        <span class="hidden-mobile">Java</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

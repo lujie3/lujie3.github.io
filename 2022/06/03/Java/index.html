@@ -63,7 +63,7 @@
 <meta property="og:image" content="http://example.com/img/java/11.9.4.png">
 <meta property="og:image" content="http://example.com/img/java/11.9.5.png">
 <meta property="article:published_time" content="2022-06-03T12:24:17.000Z">
-<meta property="article:modified_time" content="2022-07-21T01:33:56.652Z">
+<meta property="article:modified_time" content="2022-07-21T14:14:03.300Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/java/2.1.1.png">
@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.9k 字
+          12k 字
         
       </span>
     
@@ -267,7 +267,7 @@
         
         
         
-          83 分钟
+          101 分钟
         
       </span>
     
@@ -364,7 +364,32 @@ Collections: 集合的工具类,封装很多针对集合操作的方法
 <ul>
 <li>带缓存的字符流<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception&#123;<br>	<span class="hljs-comment">//1.创建对象</span><br>	Reader reader=<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;盗墓笔记.txt&quot;</span>));<br>	<span class="hljs-comment">//2.IO流循环读写文件</span><br>	<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>		<span class="hljs-type">int</span> c=reader.read(); <span class="hljs-comment">//每次读取一个字符的数据</span><br>		<span class="hljs-keyword">if</span>(c==-<span class="hljs-number">1</span>) <span class="hljs-keyword">break</span> ;    <span class="hljs-comment">//读取到文件末尾 返回-1</span><br>		System.out.print((<span class="hljs-type">char</span>)c);<br>	&#125;<br>	<span class="hljs-comment">//3.流的关闭</span><br>	reader.close();<br>	<br>	<span class="hljs-comment">//创建对象,如果文件不存在,自动创建</span><br>	Writer out=<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;out.dat&quot;</span>));<br>	<span class="hljs-comment">//IO流写入数据到文件</span><br>	out.write(<span class="hljs-string">&#x27;我&#x27;</span>); <span class="hljs-comment">//每次写入一个字符的数据</span><br>	out.write(<span class="hljs-string">&#x27;爱&#x27;</span>);<br>	out.write(<span class="hljs-string">&#x27;你&#x27;</span>);<br>	out.write(<span class="hljs-string">&quot;,哈哈哈 是骗你的...&quot;</span>);<br>	out.write(<span class="hljs-string">&quot;2022新年快乐&quot;</span>,<span class="hljs-number">2</span>, <span class="hljs-number">3</span>);<br>	<span class="hljs-comment">//流的关闭</span><br>	out.close();<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="对象流"><a href="#对象流" class="headerlink" title="对象流"></a>对象流</h3><h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h1 id="oop面向对象"><a href="#oop面向对象" class="headerlink" title="oop面向对象"></a>oop面向对象</h1><p class="note note-danger">
+<h3 id="对象流"><a href="#对象流" class="headerlink" title="对象流"></a>对象流</h3><h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p class="note note-primary">
+单例模式 = [懒汉式单例;饿汉式单例] </br>
+单例模式特点 = [只能有一个实例;必须自己创建自己唯一的实例(构造器方法私有);单例类必须给所有其他对象体用这一实例(public getInstance方法)]
+</p>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**单例模式: 懒汉式单例,再第一次调用的时候初始化*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton instance;<br>    <span class="hljs-comment">//1.构造器私有:只有本类才能创建对象</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">Singleton</span><span class="hljs-params">()</span>&#123;<br>    &#125;<br>    <span class="hljs-comment">//提供public方法让外部获取实例</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title function_">instance</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">if</span>(instance==<span class="hljs-literal">null</span>)&#123;<br>            instance=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**单例模式: 饿汉式单例,类加载的时候初始化且只执行一次*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">$Singleton</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> $Singleton instance=<span class="hljs-keyword">new</span> <span class="hljs-title class_">$Singleton</span>();<br>    <span class="hljs-keyword">private</span> $Singleton()&#123;&#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> $Singleton <span class="hljs-title function_">instance</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p class="note note-primary">
+工厂模式是Java中常用的设计模式之一。</br>
+在工厂模式中,我们创建对象时不会对客户端暴露创建逻辑,并且时通过使用一个共同的接口指向新创建的对象
+</p>
+- 例子: 加载配置文件中的属性,来创建对象
+**src/test.properties**
+
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">user</span>=<span class="hljs-string">spring.xxx.pojo.User</span><br><span class="hljs-attr">list</span>=<span class="hljs-string">java.util.ArrayList</span><br><span class="hljs-attr">driver</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.Properties;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 专门加载属性文件Properties的工具类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConfigUtil</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Properties pro=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>    <span class="hljs-comment">//静态代码块,类加载的时候执行,且只执行一次</span><br>    <span class="hljs-keyword">static</span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<span class="hljs-comment">//类加载方式加载路径:默认加载路径bin(src)</span><br>    pro.load(ConfigUtil.class.getClassLoader().getResourceAsStream(<span class="hljs-string">&quot;test.properties&quot;</span>));<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">/**通过key返回value*/</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getPropertie</span><span class="hljs-params">(String key)</span>&#123;<br>        <span class="hljs-keyword">return</span> (String) pro.get(key);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**工厂模式:创建对象*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Factory</span> &#123;<br>    <span class="hljs-comment">/**创建任何对象*/</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title function_">getInstance</span><span class="hljs-params">(String key)</span>&#123;<br>        Object obj=<span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">//类的路径名:key=&quot;list&quot; value=java.util.ArrayList</span><br>            String className=ConfigUtil.getPropertie(key);<br>            <span class="hljs-comment">//Java反射机制:通过类的路径名,获取字节码对象</span><br>            Class&lt;?&gt; cls = Class.forName(className);<br>            <span class="hljs-comment">//通过字节码对象创建对象:默认调用对象的无参数构造方法</span><br>            obj = cls.newInstance();<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> obj;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** 测试类 */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestFactory</span> &#123;<br>    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        List&lt;String&gt; list=(List&lt;String&gt;) Factory.getInstance(<span class="hljs-string">&quot;list&quot;</span>);<br>        System.out.println(list.getClass());<br>        System.out.println(Factory.getInstance(<span class="hljs-string">&quot;user&quot;</span>));<br>        System.out.println(Factory.getInstance(<span class="hljs-string">&quot;driver&quot;</span>));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="oop面向对象"><a href="#oop面向对象" class="headerlink" title="oop面向对象"></a>oop面向对象</h1><p class="note note-danger">
 面向对象==
 修饰符==
 接口与抽象类==
@@ -608,6 +633,12 @@ Optional可以避免空指针异常
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/07/21/spring/" title="spring">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spring</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
